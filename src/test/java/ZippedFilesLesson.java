@@ -28,13 +28,7 @@ public class ZippedFilesLesson {
                 assertThat(parsedPdf.text).contains("Правила Дорожного Движения");
                 assertThat(parsedPdf.numberOfPages).isEqualTo(41);
             }
-        }
-    }
 
-    @Test
-    void zipScvTest() throws Exception {
-
-        try (ZipFile zf = new ZipFile(new File(Objects.requireNonNull(cl.getResource("TestZipFile.zip")).toURI()))) {
             ZipEntry zeCsv = zf.getEntry("TestFile.csv");
             try (InputStream isCsv = zf.getInputStream(zeCsv)) {
                 CSVReader parsedCsv = new CSVReader(new InputStreamReader(isCsv));
@@ -48,13 +42,7 @@ public class ZippedFilesLesson {
                                 new String[]{"test4;test5"}
                         );
             }
-        }
-    }
 
-    @Test
-    void zipXlsTest() throws Exception {
-
-        try (ZipFile zf = new ZipFile(new File(Objects.requireNonNull(cl.getResource("TestZipFile.zip")).toURI()))) {
             ZipEntry zeXls = zf.getEntry("TestFile.xlsx");
             try (InputStream isXls = zf.getInputStream(zeXls)){
                 XLS parsedXlsx = new XLS(isXls);
